@@ -127,12 +127,12 @@
 // ─────────────────────────────────────────────────────────────────────
 const PHASES = [
 {
-  id:1, phase:"GS Preparing", icon:"📥", color:"#E8453C",
+  id:1, phase:"REQUEST INTAKE", icon:"📥", color:"#E8453C",
   owner:"GS (NghĩaNT2)", sla:"Không xác định", phase_ref:"Phase 0",
   steps:[
-    {title:"GOAL", items:["Revenue target cụ thể (VD: +20% IAP tuần này, hoặc tăng ARPU 15%)", "Retention target (VD: D7 tăng 5%, kéo churned users quay lại)", "Cross-promotion objective (VD: chuyển traffic sang game mới trong portfolio)", "Loại hình event: Flash Sale / Bundle / First-purchase / Loyalty / Win-back / Seasonal", "Đăng ký sớm...."]},
-    {title:"Thông tin Request", items:["Tên game, platform (iOS/Android/PC), region áp dụng", "Thời gian mong muốn: ngày bắt đầu, ngày kết thúc, timezone", "Đối tượng mục tiêu: All users / New users / Paying users / Churned users", "Nội dung offer sơ bộ: items, currency, bundle, discount %", "Tài liệu tham chiếu: brief, Figma, deck, hoặc ví dụ promotion trước"]},
-    {title:"Gửi request theo đúng kênh", items:["Điền đầy đủ request form", "Attach tài liệu liên quan,", "Chỉ định PIC từ phía GS — người chịu trách nhiệm suốt quá trình"]}
+    {title:"Xác định mục tiêu kinh doanh của promotion", items:["Revenue target cụ thể (VD: +20% IAP tuần này, hoặc tăng ARPU 15%)", "Retention target (VD: D7 tăng 5%, kéo churned users quay lại)", "Cross-promotion objective (VD: chuyển traffic sang game mới trong portfolio)", "Loại hình event: Flash Sale / Bundle / First-purchase / Loyalty / Win-back / Seasonal"]},
+    {title:"Chuẩn bị thông tin request", items:["Tên game, platform (iOS/Android/PC), region áp dụng", "Thời gian mong muốn: ngày bắt đầu, ngày kết thúc, timezone", "Đối tượng mục tiêu: All users / New users / Paying users / Churned users", "Nội dung offer sơ bộ: items, currency, bundle, discount %", "Tài liệu tham chiếu: brief, Figma, deck, hoặc ví dụ promotion trước"]},
+    {title:"Gửi request theo đúng kênh", items:["Điền đầy đủ standard request form (bilingual EN/VN)", "Attach tài liệu liên quan, không gửi qua email/chat tự do", "Chỉ định PIC từ phía GS — người chịu trách nhiệm suốt quá trình", "Confirm lại sau khi submit: request đã vào đúng queue chưa"]}
   ]
 },
 {
@@ -159,7 +159,7 @@ const PHASES = [
   steps:[
     {title:"Sản xuất visual assets", items:["Banner in-game (nhiều kích thước cho các vị trí: popup, shop, lobby)", "Popup artwork, animation nếu cần (idle loop, reward reveal)", "Icon cho từng item trong offer bundle", "Push notification image (nếu có kênh push)", "Fallback static image nếu animation load lỗi"]},
     {title:"Localization assets", items:["Dịch thuật text cho tất cả ngôn ngữ hỗ trợ (EN/VN tối thiểu, mở rộng theo region)", "Kiểm tra layout với text dài (tiếng Anh, tiếng Thái thường dài hơn tiếng Việt)", "Price localization: điều chỉnh giá hiển thị theo từng market nếu cần", "Cultural sensitivity check: hình ảnh, màu sắc phù hợp từng thị trường"]},
-    {title:"Review và handoff cho Dev", items:["Design review với GS trước khi handoff — dùng preview tool nếu có", "Upload asset vào đúng folder/portal — không gửi qua email", "Confirm với Dev: asset đầy đủ, đúng kích thước, sẵn sàng implement"]}
+    {title:"Review và handoff cho Dev", items:["Design review với GS trước khi handoff — dùng preview tool nếu có", "Export đúng format và naming convention theo spec kỹ thuật", "Upload asset vào đúng folder/portal — không gửi qua email", "Confirm với Dev: asset đầy đủ, đúng kích thước, sẵn sàng implement"]}
   ]
 },
 {
@@ -182,26 +182,27 @@ const PHASES = [
   ]
 },
 {
-  id:7, phase:"GRANT ACCESS on NEXUS ( Monitor)", icon:"🔐", color:"#06B6D4",
+  id:7, phase:"ACCESS & APPROVAL (NEXUS)", icon:"🔐", color:"#06B6D4",
   owner:"Ops + PM", sla:"Approval loop dài", phase_ref:"Phase 2",
   steps:[
-    {title:"Phân quyền và access control", items:["Cấp quyền truy cập Nexus/AMT theo role: PM PO, CS , Ops, Dev, QC", "Verify access: từng người có thể thực hiện đúng action theo role của mình", "Revoke access tạm thời cho những user không liên quan đến campaign này"]},
-    {title:"Approval sign-off", items:["PM review và sign-off trên brief + config cuối", "Confirm launch datetime", "Thông báo approval status cho toàn team: Dev, QC, CS"]}
+    {title:"Chuẩn bị hồ sơ approval", items:["Tổng hợp: brief, offer spec, config summary, timeline, test result sơ bộ", "Điền đầy đủ approval checklist theo Tier (Tier S/A cần PM approve, B/C có thể fast-track)", "Rollback plan rõ ràng: khi nào rollback, ai quyết định, quy trình thực hiện", "Escalation path nếu có incident sau launch"]},
+    {title:"Phân quyền và access control", items:["Cấp quyền truy cập Nexus/AMT theo role: Publisher Lead, Ops, Dev, QC", "Verify access: từng người có thể thực hiện đúng action theo role của mình", "Review quyền của GS: chỉ xem hay có quyền trigger gì không?", "Revoke access tạm thời cho những user không liên quan đến campaign này"]},
+    {title:"Approval sign-off", items:["PM/Publisher Lead review và sign-off trên brief + config cuối", "Confirm launch datetime và người chịu trách nhiệm deploy", "Thông báo approval status cho toàn team: Dev, QC, CS", "Set SLA alert: nếu approval chưa xong trước D-2 thì escalate ngay"]}
   ]
 },
 {
   id:8, phase:"TESTING & QC", icon:"🧪", color:"#F97316",
   owner:"Dev + GS + QC", sla:"Sát ngày air", phase_ref:"Phase 0-1",
   steps:[
-    {title:"Functional testing", items:["Offer hiển thị đúng cho đúng segment, không hiển thị cho segment bị exclude", "Mua hàng thành công → nhận đúng items, đúng số lượng, ngay lập tức", "Purchase limit hoạt động chính xác: không mua quá giới hạn", "Timer countdown chính xác, tự ẩn đúng giờ khi offer hết hạn", "Edge cases: mua khi offer vừa hết hạn, mất mạng giữa chừng, duplicate tap"]},
-    {title:"Economy & balance testing", items:["Offer không phá vỡ game economy: so sánh value với offers hiện có", "Kiểm tra exploit potential: mua đi bán lại, stack bug, refund abuse", "Simulate tác động nếu 1% / 5% / 10% player mua — economy impact thế nào?", "Cross-promotion cannibalization check: có ăn mòn revenue của kênh khác không?"]},
-    {title:"Integration testing", items:["Push notification → deep link → mở đúng offer trong game", "A/B test: user được assign đúng variant, không bị switch giữa chừng", "Analytics events fire đầy đủ: impression, click, purchase, dismiss đều có data", "Cross-platform: iOS, Android, PC có behavior nhất quán không?", "Payment flow với các payment provider (Apple IAP, Google Play, local payment)"]},
-    {title:"Staging sign-off", items:["Deploy lên staging environment, team nội bộ test như người chơi thật", "Verify dashboard hiển thị đúng dữ liệu real-time", "Sign-off checklist từ Dev, QC, và Publisher — cả 3 phải confirm", "Mọi bug tìm thấy được log và fix trước khi move sang production"]}
+    {title:"Functional testing", items:["Offer hiển thị đúng cho đúng segment, không hiển thị cho segment bị exclude", "Button tiêu/nhận item hoạt động đúng logic: Trừ tiền tệ/điểm thưởng và trả về thông báo đúng với action", "Các limitation hoạt động đúng logic, xuất hiện indicator ( đổi màu nút/ thống báo)  khi action đạt giới hạn", "Timer countdown chính xác,  xuất hiện thông báo hết hạn khi action ngoài thời gian setup", "Bố cục frames hiện thị được đầy đủ nội dung, button show forms hoạt động được trên mọi resolution phổ biến", "Các thao tác hot-swap, bảo trì có tính phản hồi nhanh. Thời gian apply không quá 5p kể từ thời điểm action trên tool.", "Các nhiệm vụ của promotion được ghi nhận đúng tiến độ:- Với nhóm payment/API: chỉ  trả về sucess đối với các nhiệm vụ tướng ứng với các hành động. Các nhiệm vụ còn lại phải trả về fail- Với các nhiệm vụ có giới hạn mỗi ngày: trả về quà/điểm thưởng đúng với giới hạn đã setup"]},
+    {title:"Economy & balance testing", items:["Xác định ceiling đối với mỗi user tham gia: Để nhận full quà sự kiện cần bao nhiêu user tham gia bao nhiêu ngày / bỏ ra bao nhiêu ( nếu có payment)", "Kiểm tra exploit potential: Spam nhận 1 loại quà/điểm thưởng, refund abuse", "Đối với các target chỉ cần engagement: xác định rõ budget/user khi tạo các gói quà"]},
+    {title:"Integration testing", items:["Push notification → deep link → mở đúng offer trong game", "Analytics events fire đầy đủ: impression, click, purchase, dismiss đều có data", "Cross-platform: iOS, Android, PC có behavior nhất quán không?", "Payment flow với các payment provider (Apple IAP, Google Play, local payment)", "Tính nhất quán về session: tại 1 thời điểm, trong cùng 1 UID chỉ cho phép 1 session tương tác với promotion. khi có một session mới login sẽ force log-out session cũ"]},
+    {title:"Staging sign-off", items:["Deploy lên staging environment, team nội bộ test như người chơi thật", "Verify dashboard hiển thị đúng dữ liệu real-time", "Sign-off checklist từ Dev, QC, và Publisher — cả 3 phải confirm", "Reset/Archive dữ liệu test UAT trước khi chuyển sang Production để đảm bảo tính chính xác của Data trong quá trình chạy promotion"]}
   ]
 },
 {
   id:9, phase:"LAUNCH & DEPLOYMENT", icon:"🚀", color:"#14B8A6",
-  owner:"GS + Promotion Team", sla:"Không có soft launch process", phase_ref:"Phase 2-3",
+  owner:"Ops + Dev", sla:"Không có soft launch process", phase_ref:"Phase 2-3",
   steps:[
     {title:"Soft launch (nếu áp dụng cho Tier S/A)", items:["Mở cho 5–10% traffic hoặc 1 region nhỏ trước", "Monitor KPIs trong 12–24h đầu: CR, revenue, error rate, server load", "So sánh với baseline và kỳ vọng — Go / No-go decision dựa trên early data", "Nếu phát hiện vấn đề nghiêm trọng: rollback ngay, không tiếp tục full launch"]},
     {title:"Full deployment", items:["Bật promotion cho toàn bộ eligible users theo đúng schedule", "Kích hoạt push notification campaign (không fire trước khi offer live)", "Publish in-app announcement hoặc social media nếu có", "Thông báo nội bộ: CS team, Ops, Dev on-call — ai liên hệ khi có vấn đề"]},
@@ -210,7 +211,7 @@ const PHASES = [
 },
 {
   id:10, phase:"MONITOR & VẬN HÀNH", icon:"📊", color:"#6366F1",
-  owner:"GS + Promotion Team", sla:"Phản ứng thụ động", phase_ref:"Phase 2-3",
+  owner:"Ops + Dev", sla:"Phản ứng thụ động", phase_ref:"Phase 2-3",
   steps:[
     {title:"Real-time monitoring", items:["Revenue real-time vs target — theo từng giờ, ngày, segment", "Conversion rate theo segment, variant (A/B test), platform, region", "Impression → Click → Purchase funnel: xác định drop-off point", "Server health: latency, error rate, payment failure rate", "Anomaly detection: bất thường về số lượng mua, fraud signal, exploit attempt"]},
     {title:"Dynamic optimization", items:["Điều chỉnh targeting nếu CR thấp ở một segment cụ thể", "Extend hoặc shorten duration dựa trên performance thực tế", "Tăng hoặc giảm push notification frequency nếu cần", "Dừng sớm A/B variant kém hiệu quả rõ rệt (statistical significance đủ)", "Emergency kill: tắt promotion ngay lập tức nếu phát hiện exploit hoặc bug nghiêm trọng"]},
@@ -219,9 +220,9 @@ const PHASES = [
 },
 {
   id:11, phase:"POST-MORTEM & LEARNINGS", icon:"📋", color:"#A855F7",
-  owner:"GS + Promotion Team)", sla:"Thường bị bỏ qua", phase_ref:"Phase 2-3",
+  owner:"Publisher Lead (PhuLD)", sla:"Thường bị bỏ qua", phase_ref:"Phase 2-3",
   steps:[
-    {title:"Graceful ending", items:["Offer ẩn đúng giờ", "Clear tất cả scheduled push notification còn trong queue", "Cập nhật shop / storefront về trạng thái bình thường", "Thông báo kết thúc promotion cho CS team"]},
+    {title:"Graceful ending", items:["Offer ẩn đúng giờ — không đột ngột, player đang ở màn hình mua được hoàn thành", "Clear tất cả scheduled push notification còn trong queue", "Cập nhật shop / storefront về trạng thái bình thường", "Thông báo kết thúc promotion cho CS team"]},
     {title:"Phân tích kết quả", items:["Total revenue vs target — đạt / không đạt / vượt, lý do tại sao", "Conversion rate theo segment, variant, platform, region", "A/B test winner — statistical significance đủ chưa? Kết luận gì?", "Cannibalization: revenue các kênh khác có giảm trong thời gian promotion chạy?", "LTV impact: segment đã mua promotion có tăng LTV 30/60/90 ngày sau không?", "Retention impact: promotion ảnh hưởng D7/D30 retention thế nào?"]},
     {title:"Post-mortem report & feed forward", items:["What went well — giữ lại và nhân rộng cho các promotion sau", "What went wrong — root cause, lesson learned, action item cụ thể", "A/B test winner → trở thành default config cho promotion cùng loại lần sau", "Archive config thành công vào Knowledge Base để reuse", "Update Promotion Playbook: best practices, template, benchmark mới", "Insights từ player feedback → input cho product roadmap và segmentation model"]}
   ]
@@ -471,14 +472,14 @@ function saveToLocalStorage(){
       phases: document.getElementById('phases-container').innerHTML,
       savedAt: Date.now()
     };
-    localStorage.setItem('promo-detail-v2', JSON.stringify(data));
+    localStorage.setItem('promo-detail-v3', JSON.stringify(data));
     showToast('✅ Đã lưu! F5 vẫn giữ nguyên.');
   } catch(e){ showToast('❌ Lỗi lưu: ' + e.message); }
 }
 
 function loadFromLocalStorage(){
   try {
-    const raw = localStorage.getItem('promo-detail-v2');
+    const raw = localStorage.getItem('promo-detail-v3');
     if(!raw) return false;
     const data = JSON.parse(raw);
     if(data.phases) document.getElementById('phases-container').innerHTML = data.phases;
@@ -492,7 +493,7 @@ function loadFromLocalStorage(){
 
 function resetToOriginal(){
   if(!confirm('Xoá toàn bộ chỉnh sửa và về bản gốc?')) return;
-  localStorage.removeItem('promo-detail-v2');
+  localStorage.removeItem('promo-detail-v3');
   renderPhases(); countStats();
   document.getElementById('edit-status').textContent = 'Chế độ xem — nhấn "Chỉnh sửa" để chỉnh nội dung';
   showToast('↩️ Đã reset về bản gốc');
@@ -503,17 +504,69 @@ function resetToOriginal(){
 // ─────────────────────────────────────────────────────────────────────
 function downloadHTML(){
   if(editMode){ showToast('⚠️ Hãy nhấn "Lưu thay đổi" trước!'); return; }
-  const clone = document.documentElement.cloneNode(true);
-  clone.querySelectorAll('script').forEach(s=>{ if(s.textContent.includes('__mtime__')) s.remove(); });
-  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
-  const blob = new Blob([html],{type:'text/html;charset=utf-8'});
+  // Serialize current PHASES from DOM then rebuild a fully working file
+  const exportPhases = extractPhasesFromDOM();
+  const exportJS = 'const PHASES = ' + JSON.stringify(exportPhases, null, 2) + ';';
+  // Get the full page source and replace PHASES block
+  const src = document.querySelector('script:not([src])').textContent;
+  // Build standalone HTML with updated data embedded
+  const style = document.querySelector('style').textContent;
+  const bodyHTML = document.body.innerHTML
+    .replace(/<div class="toast[^"]*"[^>]*>.*?<\/div>/s,'<div class="toast" id="toast"></div>');
+  const out = `<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>VNGGames — Promotion Flow Detail</title>
+<style>${style}</style>
+</head>
+<body>
+${bodyHTML}
+<script>
+${exportJS}
+${src.replace(/const PHASES\s*=\s*\[[\s\S]*?^\];/m,'').trim()}
+<\/script>
+</body>
+</html>`;
+  const blob = new Blob([out],{type:'text/html;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href=url; a.download='promotion-flow-detail.html';
   document.body.appendChild(a); a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-  showToast('✅ Đã tải file về!');
+  showToast('✅ Đã tải file về (có đầy đủ JS)!');
+}
+
+function extractPhasesFromDOM(){
+  const results = [];
+  document.querySelectorAll('.phase-card').forEach(card => {
+    const pid = parseInt(card.id.replace('card-',''));
+    const bar = card.querySelector('.phase-bar');
+    const color = (bar && bar.style.background) || '#888';
+    const iconEl = card.querySelector('.phase-inner > .phase-header span[style*="font-size:20px"]');
+    const icon = iconEl ? iconEl.textContent.trim() : '📌';
+    const getField = pre => { const el = card.querySelector(`[data-field^="${pre}-"]`); return el ? el.textContent.trim() : ''; };
+    const steps = [];
+    card.querySelectorAll('.step-card').forEach(sc => {
+      const titleEl = sc.querySelector('.step-title');
+      const title = titleEl ? titleEl.textContent.trim() : '';
+      const items = [];
+      sc.querySelectorAll('.detail-item').forEach(div => {
+        div.querySelectorAll('span').forEach(sp => {
+          if(!sp.classList.contains('detail-dot')){
+            const t = sp.textContent.trim();
+            if(t && t !== '●') items.push(t);
+          }
+        });
+      });
+      steps.push({title, items});
+    });
+    results.push({id:pid, phase:getField('pname'), icon, color,
+      owner:getField('owner'), sla:getField('sla'), phase_ref:getField('ref'), steps});
+  });
+  return results;
 }
 
 // ─────────────────────────────────────────────────────────────────────
